@@ -16,6 +16,10 @@ try {
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
+
+if (isset($_COOKIE['loggedInUser'])) {} else {
+    header('location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +34,6 @@ try {
 <body style="display: flex; flex-direction: row;">
     <div class="left" style="display: flex; width: 50%; flex-direction: column;">
         <h1>Welkom op het netland beheerderpaneel</h1>
-        <a href="login.php"><button>Login</button></a>
         <h1>Onze Media:</h1>
         <a href="index.php">Refresh Pagina</a>
         <table style="width: 55%; height: 60%;">
@@ -235,6 +238,12 @@ try {
     ?>
 
 </div>
+
+
+<form action="logout.php" method="post">
+<button type="submit" name="logout">logout</button>
+</form>
+
 </body>
 
 </html>

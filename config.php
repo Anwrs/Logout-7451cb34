@@ -17,7 +17,6 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -26,8 +25,8 @@ if (isset($_POST['login'])) {
     $stmt->execute([$username,$password]); 
     $user = $stmt->fetch();
     if ($user) {
-        setcookie('loggedInUser', $user['id'], time() + 1, "/");
-        header('Location:adminpage.php');
+        setcookie('loggedInUser', $user['id'], time() + 50, "/");
+        header('Location:index.php');
     } else {
         echo '<h2 style="color:red">Username and Password do not match</h2>';
     }
